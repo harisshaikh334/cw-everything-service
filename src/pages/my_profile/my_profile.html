@@ -1,0 +1,295 @@
+<ion-header class="bg-color">
+    <ion-navbar>
+        <ion-title>{{'my_profile' | translate}}</ion-title>
+    </ion-navbar>
+    
+    <ion-toolbar>
+        <ion-segment [(ngModel)]="segments" color="secondary">
+          <ion-segment-button value="basic">Basic Details</ion-segment-button>
+          <ion-segment-button [disabled]="segments == 'basic'" [hidden]="category != 'vehicle'" value="vehicle">Vehicle Details</ion-segment-button>
+          <ion-segment-button [disabled]="segments != 'bank'" value="bank">Bank Details</ion-segment-button>
+        </ion-segment>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="bg-color">
+    <div *ngIf="showLoader" class="loader-bg">
+        <ion-spinner class="spinner" color="light"></ion-spinner>
+    </div>
+    <div [hidden]="segments != 'basic'" class="form">
+        <form [formGroup]="basicForm">
+            <ion-grid>
+                <ion-row>
+                    <ion-col col-6>
+                        <div class="profile">
+                            <div (click)="actionSheetFile('pp')" class="profile_img center_img">
+                                <img src="{{(profile_picture) ? profile_picture : 'assets/imgs/avatar.png'}}" class="crop_img loading" onerror="this.onerror=null;this.src='assets/imgs/avatar.png';" /> 
+                            </div>
+                            <ion-icon (click)="actionSheetFile('pp')" class="material-icons">camera_alt</ion-icon>
+                        </div>
+                    </ion-col>
+                    <ion-col col-6>
+                        <div class="vstatus">
+                            <h4 class="text-md-light">Verification Status</h4>
+                            <h4 *ngIf="data.is_approved == 1" class="text-md-primary"><ion-icon class="vicon material-icons">verified_user</ion-icon> Verified</h4>
+                            <h4 *ngIf="data.is_approved == 0" class="text-md-warning"><ion-icon class="vicon material-icons">watch_later</ion-icon> Pending</h4>
+                        </div>    
+                    </ion-col>    
+                </ion-row>
+            </ion-grid>            
+            
+            <ion-list no-lines>
+                <ion-item [class.invalid]="!basicForm.controls.name.valid && (basicForm.controls.name.dirty || submitAttempt)">
+                    <ion-label color="primary">Full Name</ion-label>
+                    <ion-input type="text" readonly formControlName="name"></ion-input>
+                </ion-item>
+                <p class='error' *ngIf="!basicForm.controls.name.valid  && (basicForm.controls.name.dirty || submitAttempt)">Please enter your full name.</p>
+
+                <ion-item [class.invalid]="!basicForm.controls.contact.valid && (basicForm.controls.contact.dirty || submitAttempt)">
+                    <ion-label color="primary">Mobile Number</ion-label>
+                    <ion-input type="tel" readonly formControlName="contact"></ion-input>
+                </ion-item>
+                <p class='error' *ngIf="!basicForm.controls.contact.valid  && (basicForm.controls.contact.dirty || submitAttempt)">Please enter a valid Mobile Number.</p>
+
+                <ion-item [class.invalid]="!basicForm.controls.email.valid && (basicForm.controls.email.dirty || submitAttempt)">
+                    <ion-label color="primary">Email Address</ion-label>
+                    <ion-input type="text" formControlName="email"></ion-input>
+                </ion-item>
+                <p class='error' *ngIf="!basicForm.controls.email.valid  && (basicForm.controls.email.dirty || submitAttempt)">Please enter a valid Email Address.</p>
+
+                <ion-item [class.invalid]="!basicForm.controls.father_name.valid && (basicForm.controls.father_name.dirty || submitAttempt)">
+                    <ion-label color="primary">Father's Name</ion-label>
+                    <ion-input type="text" formControlName="father_name"></ion-input>
+                </ion-item>
+                <p class='error' *ngIf="!basicForm.controls.father_name.valid  && (basicForm.controls.father_name.dirty || submitAttempt)">Please enter your Father's Name.</p>
+
+                <ion-item [class.invalid]="!basicForm.controls.mother_name.valid && (basicForm.controls.mother_name.dirty || submitAttempt)">
+                    <ion-label color="primary">Mother's Name</ion-label>
+                    <ion-input type="text" formControlName="mother_name"></ion-input>
+                </ion-item>
+                <p class='error' *ngIf="!basicForm.controls.mother_name.valid && (basicForm.controls.mother_name.dirty || submitAttempt)">Please enter your Mother's Name.</p>
+
+                <ion-item [class.invalid]="!basicForm.controls.present_address.valid && (basicForm.controls.present_address.dirty || submitAttempt)">
+                    <ion-label color="primary">Present Address</ion-label>
+                    <ion-textarea rows="4" formControlName="present_address"></ion-textarea>
+                </ion-item>
+                <p class='error' *ngIf="!basicForm.controls.present_address.valid  && (basicForm.controls.present_address.dirty || submitAttempt)">Please enter your current residential address.</p>
+
+                <div align="center" style="margin-top:10px">
+                    <button ion-button block icon-start (click)="openLocationPicker()">
+                      <ion-icon name="locate"></ion-icon>
+                      Locate Address
+                    </button>
+                    <p style="color:white; padding: 5px 0" *ngIf="google_address">{{google_address}}</p>
+                    <p class='error' *ngIf="!basicForm.controls.lat.valid && (basicForm.controls.lat.dirty || submitAttempt)">Please select address location on map.</p>
+                </div>    
+
+                <ion-item [class.invalid]="!basicForm.controls.permenant_address.valid && (basicForm.controls.permenant_address.dirty || submitAttempt)">
+                    <ion-label color="primary">Permanent Address</ion-label>
+                    <ion-textarea rows="4" formControlName="permenant_address"></ion-textarea>
+                </ion-item>
+                <p class='error' *ngIf="!basicForm.controls.permenant_address.valid  && (basicForm.controls.permenant_address.dirty || submitAttempt)">Please enter your permanent residential address.</p>
+
+                <ion-item>
+                    <ion-label color="primary">Shop / Business Name</ion-label>
+                    <ion-input type="text" formControlName="shop_name"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label color="primary">Shop Address</ion-label>
+                    <ion-textarea rows="4" formControlName="shop_address"></ion-textarea>
+                </ion-item>
+                <ion-item>
+                    <ion-label color="primary">Shop License No.</ion-label>
+                    <ion-input type="text" formControlName="shop_licence_no"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label color="primary">Telephone Number</ion-label>
+                    <ion-input type="tel" maxlength="11" formControlName="tel_no"></ion-input>
+                </ion-item>
+                <p class='error' *ngIf="!basicForm.controls.tel_no.valid  && (basicForm.controls.tel_no.dirty || submitAttempt)">Please enter valid telephone number.</p>
+
+                <ion-item>
+                    <ion-label color="primary">GST Number</ion-label>
+                    <ion-input type="text" formControlName="gst_no"></ion-input>
+                </ion-item>
+                <ion-item [class.invalid]="!basicForm.controls.pancard_no.valid && (basicForm.controls.pancard_no.dirty || submitAttempt)">
+                    <ion-label color="primary">PAN Card Number</ion-label>
+                    <ion-input type="text" maxlength="10" class="uppercase" formControlName="pancard_no"></ion-input>
+                </ion-item>
+                <p class='error' *ngIf="!basicForm.controls.pancard_no.valid  && (basicForm.controls.pancard_no.dirty || submitAttempt)">Please enter your PAN card number.</p>
+
+                <ion-item [class.invalid]="!basicForm.controls.adhaar_card_no.valid && (basicForm.controls.adhaar_card_no.dirty || submitAttempt)">
+                    <ion-label color="primary">Aadhaar Card Number</ion-label>
+                    <ion-input type="text" maxlength="12" formControlName="adhaar_card_no"></ion-input>
+                </ion-item>
+                <p class='error' *ngIf="!basicForm.controls.adhaar_card_no.valid  && (basicForm.controls.adhaar_card_no.dirty || submitAttempt)">Please enter your Aadhaar card number.</p>
+
+                <ion-item [class.invalid]="!basicForm.controls.education_qualification.valid && (basicForm.controls.education_qualification.dirty || submitAttempt)">
+                    <ion-label color="primary">Educational Qualification</ion-label>
+                    <ion-select placeholder="--Select--" formControlName="education_qualification">
+                        <ion-option *ngFor="let item of qualification" value="{{item}}">{{item}}</ion-option>
+                    </ion-select>
+                </ion-item>
+                <p class='error' *ngIf="!basicForm.controls.education_qualification.valid  && (basicForm.controls.education_qualification.dirty || submitAttempt)">Please select your Educational Qualification.</p>
+
+                <ion-item [class.invalid]="!basicForm.controls.skills.valid && (basicForm.controls.skills.dirty || submitAttempt)">
+                    <ion-label color="primary">Skills</ion-label>
+                    <ion-input type="text" (ionFocus)="openPicker()" formControlName="skills"></ion-input>
+                </ion-item>
+                <p class='error' *ngIf="!basicForm.controls.skills.valid  && (basicForm.controls.skills.dirty || submitAttempt)">Please enter your skills.</p>
+
+                <div style="margin: 20px 0 10px 0">
+                    <button ion-button block (click)="actionSheetFile('pan')"><ion-icon class="material-icons">file_copy</ion-icon> Upload Pan Card</button>
+                    <ion-input style="display:none" type="file" accept="application/pdf,image/*" id="upload_pan_card" (ionChange)="uploadFile('upload_pan_card')" formControlName="upload_pan_card"></ion-input>
+                </div>
+
+                <div style="margin: 20px 0 10px 0">
+                    <button ion-button block (click)="actionSheetFile('adhaar')"><ion-icon class="material-icons">file_copy</ion-icon> Upload Adhaar Card</button>
+                    <ion-input style="display:none" type="file" accept="application/pdf,image/*" id="upload_adhaar_card" (ionChange)="uploadFile('upload_adhaar_card')" formControlName="upload_adhaar_card"></ion-input>
+                </div>
+                <p class='error' *ngIf="!basicForm.controls.upload_adhaar_card.valid  && (basicForm.controls.upload_adhaar_card.dirty || submitAttempt)">Please upload a copy of your Aadhaar Card.</p>
+            </ion-list> 
+
+            <ion-list>
+                <ion-list-header class="text-md-light text-md-uppercase">Please provide 2 reference details</ion-list-header>
+                <ion-item [class.invalid]="!basicForm.controls.reference1_name.valid && (basicForm.controls.reference1_name.dirty || submitAttempt)">
+                    <ion-label color="primary">Reference 1 Name</ion-label>
+                    <ion-input type="text" formControlName="reference1_name"></ion-input>
+                </ion-item>
+                <p class='error' *ngIf="!basicForm.controls.reference1_name.valid  && (basicForm.controls.reference1_name.dirty || submitAttempt)">Please enter Reference name.</p>
+
+                <ion-item [class.invalid]="!basicForm.controls.reference1_contact.valid && (basicForm.controls.reference1_contact.dirty || submitAttempt)">
+                    <ion-label color="primary">Reference 1 Phone</ion-label>
+                    <ion-input type="tel" maxlength="10" formControlName="reference1_contact"></ion-input>
+                </ion-item>
+                <p class='error' *ngIf="!basicForm.controls.reference1_contact.valid  && (basicForm.controls.reference1_contact.dirty || submitAttempt)">Please enter valid contact number.</p>
+
+                <ion-item [class.invalid]="!basicForm.controls.reference2_name.valid && (basicForm.controls.reference2_name.dirty || submitAttempt)">
+                    <ion-label color="primary">Reference 2 Name</ion-label>
+                    <ion-input type="text" formControlName="reference2_name"></ion-input>
+                </ion-item>
+                <p class='error' *ngIf="!basicForm.controls.reference2_name.valid  && (basicForm.controls.reference2_name.dirty || submitAttempt)">Please enter Reference name.</p>
+
+                <ion-item [class.invalid]="!basicForm.controls.reference2_contact.valid && (basicForm.controls.reference2_contact.dirty || submitAttempt)">
+                    <ion-label color="primary">Reference 2 Phone</ion-label>
+                    <ion-input type="tel" maxlength="10" formControlName="reference2_contact"></ion-input>
+                </ion-item>
+                <p class='error' *ngIf="!basicForm.controls.reference2_contact.valid  && (basicForm.controls.reference2_contact.dirty || submitAttempt)">Please enter valid contact number.</p>
+
+            </ion-list>     
+        </form>    
+
+        <button ion-button block (click)="showNextSegment()">NEXT <ion-icon class="material-icons">arrow_forward</ion-icon></button>
+        <br/>  
+    </div>
+
+    <div [hidden]="segments != 'vehicle'" class="form">
+        <form [formGroup]="vehicleForm">
+            <ion-list no-lines>
+                <ion-item>
+                    <ion-label>Is vehicle registered on your name?</ion-label>
+                    <ion-select [ngModelOptions]="{standalone:true}" [(ngModel)]="registration_owner">
+                        <ion-option selected value="Yes">Yes</ion-option>
+                        <ion-option value="No">No</ion-option>
+                    </ion-select>
+                </ion-item>
+                <ion-item *ngIf="registration_owner == 'No'">
+                    <ion-label>Vehicle Owner Name</ion-label>
+                    <ion-input type="text" formControlName="vehicle_owner"></ion-input>
+                </ion-item>
+                <p class='error' *ngIf="!vehicleForm.controls.vehicle_owner.valid && registration_owner == 'No' && (vehicleForm.controls.vehicle_owner.dirty || submitAttempt)">Please enter Vehicle Owner's Name.</p>    
+
+                <ion-item>
+                    <ion-label color="primary">Driving License No.</ion-label>
+                    <ion-input type="text" formControlName="driving_licence_no"></ion-input>
+                </ion-item>
+                <p class='error' *ngIf="!vehicleForm.controls.driving_licence_no.valid && (vehicleForm.controls.driving_licence_no.dirty || submitAttempt)">Please enter Driving License Number.</p>    
+
+                <ion-item>
+                    <ion-label color="primary">Permit No.</ion-label>
+                    <ion-input type="text" formControlName="permit_licence_no"></ion-input>
+                </ion-item>
+                <p class='error' *ngIf="!vehicleForm.controls.permit_licence_no.valid && (vehicleForm.controls.permit_licence_no.dirty || submitAttempt)">Please enter Permit Number.</p>
+
+                <ion-item>
+                    <ion-label color="primary">Batch No.</ion-label>
+                    <ion-input type="text" formControlName="batch_no"></ion-input>
+                </ion-item>
+
+                <ion-item>
+                    <ion-label color="primary">Vehicle Registration No.</ion-label>
+                    <ion-input type="text" formControlName="car_rikshaw_reg_no"></ion-input>
+                </ion-item>
+                <p class='error' *ngIf="!vehicleForm.controls.car_rikshaw_reg_no.valid && (vehicleForm.controls.car_rikshaw_reg_no.dirty || submitAttempt)">Please enter Vehicle Registration Number.</p>
+
+                <ion-item>
+                    <ion-label color="primary">RC Book No.</ion-label>
+                    <ion-input type="text" formControlName="rc_book_no"></ion-input>
+                </ion-item>
+                <p class='error' *ngIf="!vehicleForm.controls.rc_book_no.valid && (vehicleForm.controls.rc_book_no.dirty || submitAttempt)">Please enter RC Book Number.</p>
+
+                <ion-item>
+                    <ion-label color="primary">PUC End Date</ion-label>
+                    <ion-datetime displayFormat="DD MMM YYYY" max="{{maxyear}}" formControlName="puc"></ion-datetime>
+                </ion-item>
+
+                <ion-item>
+                    <ion-label color="primary">Insurance Expiry Date</ion-label>
+                    <ion-datetime displayFormat="DD MMM YYYY" max="{{maxyear}}" formControlName="car_rikshaw_insurance_dt"></ion-datetime>
+                </ion-item>
+                <p class='error' *ngIf="!vehicleForm.controls.car_rikshaw_insurance_dt.valid && (vehicleForm.controls.car_rikshaw_insurance_dt.dirty || submitAttempt)">Please enter Insurance Expiry Date.</p>
+
+                <div style="margin: 20px 0 10px 0">
+                    <button ion-button block (click)="actionSheetFile('license')"><ion-icon class="material-icons">file_copy</ion-icon> Upload Driving License</button>
+                    <ion-input style="display:none" type="file" accept="application/pdf,image/*" id="upload_driving_licence" (ionChange)="uploadFile('upload_driving_licence')" formControlName="upload_driving_licence"></ion-input>
+                </div>
+                <p class='error' *ngIf="!vehicleForm.controls.upload_driving_licence.valid && (vehicleForm.controls.upload_driving_licence.dirty || submitAttempt)">Please upload copy of Driving License.</p>
+
+            </ion-list>
+        </form>     
+
+        <button ion-button block (click)="showNextSegment()">NEXT <ion-icon class="material-icons">arrow_forward</ion-icon></button>
+        <br/>     
+    </div>
+
+    <div [hidden]="segments != 'bank'" class="form">
+        <form [formGroup]="bankForm">
+            <ion-list no-lines>
+                <ion-item>
+                    <ion-label color="primary">Account Type</ion-label>
+                    <ion-select formControlName="account_type">
+                        <ion-option value="Saving Account">Saving Account</ion-option>
+                        <ion-option value="Current Account">Current Account</ion-option>
+                    </ion-select>
+                </ion-item>
+                <ion-item class="docs">
+                    <ion-label stacked color="primary">Account Details</ion-label>
+                    <ion-input formControlName="accountholder" placeholder="Account Holder Name"></ion-input>
+                    <ion-input formControlName="bank" placeholder="Bank Name"></ion-input>
+                    <ion-input formControlName="branch" placeholder="Branch Name"></ion-input>
+                    <ion-input formControlName="accountnumber" placeholder="Account Number"></ion-input>
+                    <ion-input formControlName="ifsc" placeholder="IFSC Code"></ion-input>
+                </ion-item>
+                <p class='error' *ngIf="!bankForm.controls.accountholder.valid  && (bankForm.controls.accountholder.dirty || submitAttempt)">Please enter Account Holder Name.</p>
+                <p class='error' *ngIf="!bankForm.controls.bank.valid  && (bankForm.controls.bank.dirty || submitAttempt)">Please enter Bank Name.</p>
+                <p class='error' *ngIf="!bankForm.controls.branch.valid  && (bankForm.controls.branch.dirty || submitAttempt)">Please enter Branch Name.</p>
+                <p class='error' *ngIf="!bankForm.controls.accountnumber.valid  && (bankForm.controls.accountnumber.dirty || submitAttempt)">Please enter valid Account Number.</p>
+                <p class='error' *ngIf="!bankForm.controls.ifsc.valid  && (bankForm.controls.ifsc.dirty || submitAttempt)">Please enter Bank's IFSC Code.</p>
+
+                <div style="margin: 20px 0 10px 0">
+                    <button ion-button block (click)="actionSheetFile('cheque')"><ion-icon class="material-icons">file_copy</ion-icon> Upload Cancelled Cheque</button>
+                    <ion-input style="display:none" type="file" accept="application/pdf,image/*" id="upload_cancelled_cheque" (ionChange)="uploadFile('upload_cancelled_cheque')" formControlName="upload_cancelled_cheque"></ion-input>
+                </div>
+                <p class='error' *ngIf="!bankForm.controls.upload_cancelled_cheque.valid  && (bankForm.controls.upload_cancelled_cheque.dirty || submitAttempt)">Please upload copy of Cancelled Cheque.</p>
+
+                <div style="margin: 20px 0 10px 0">
+                    <button ion-button block (click)="actionSheetFile('passbook')"><ion-icon class="material-icons">file_copy</ion-icon> Upload Bank Passbook</button>
+                    <ion-input style="display:none" type="file" accept="application/pdf,image/*" id="upload_bank_passbook" (ionChange)="uploadFile('upload_bank_passbook')" formControlName="upload_bank_passbook"></ion-input>
+                </div>
+            </ion-list>
+        </form>     
+
+        <button ion-button block (click)="showNextSegment()">SAVE</button>
+        <br/>     
+    </div>
+</ion-content>

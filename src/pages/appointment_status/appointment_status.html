@@ -1,0 +1,133 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title><span>{{'job_status' | translate}}</span></ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content class="bg-color">
+    <div *ngIf="showLoader" class="loader-bg">
+        <ion-spinner class="spinner" color="light"></ion-spinner>
+    </div> 
+    <div class="job_status">
+        <ion-row>
+            <ion-col col-7>
+                <div class="status d-flex active">
+                    <h2>1</h2>
+                    <div class="status_details">
+                        <h3>{{'pending' | translate}}</h3>
+                        <p>{{order.created_at | date:'MMM d, y, h:mm a'}}</p>
+                    </div>
+                </div>
+                <div class="status d-flex {{['Quoted','Scheduled','Complete'].indexOf(order.status) != -1  ? 'active' : ''}}">
+                    <h2>2</h2>
+                    <div class="status_details">
+                        <h3>Quoted</h3>
+                        <p>{{order.quotation_date != null ? (order.quotation_date | date:'MMM d, y, h:mm a') : '-'}}</p>
+                    </div>
+                </div>
+                <div class="status d-flex {{order.quotation_approved == 'N' ? 'bg-danger' : ''}} {{['Accepted','Complete','Scheduled'].indexOf(order.status) != -1  ? 'active' : ''}}">
+                    <h2>3</h2>
+                    <div class="status_details">
+                        <h3>{{order.quotation_approved == 'Y' ? 'Scheduled' : (order.quotation_approved == null) ? 'Scheduled / Rejected' : 'Rejected'}}</h3>
+                        <p>{{order.service_schedule != null ? (order.service_schedule | date:'MMM d, y, h:mm a') : '-'}}</p>
+                    </div>
+                </div>
+                <div class="status d-flex {{'Complete' == order.status ? 'active' : ''}}">
+                    <h2>4</h2>
+                    <div class="status_details">
+                        <h3>{{'finished' | translate}}</h3>
+                        <p>{{order.completion_date != null ? (order.completion_date | date:'MMM d, y, h:mm a') : '-'}}</p>
+                    </div>
+                </div>
+            </ion-col>
+            <ion-col col-5>
+                <div class="img_box center_img">
+                    <img src="{{status_img}}" class="crop_img">
+                </div>
+                <div class="">
+                    <!-- <button ion-button block icon-only class="btn">
+                        <ion-icon class="material-icons">thumb_down</ion-icon>
+                    </button> -->
+                    <button *ngIf="order.status == 'Pending'" (click)="presentPrompt()" ion-button block class="btn">SEND QUOTATION</button>
+                    
+                    <a class="btn" button ion-button icon-start href="tel:{{customer.contact}}" *ngIf="order.status == 'Scheduled' && order.quotation_approved == 'Y'"><ion-icon name="call"></ion-icon> CUSTOMER</a>
+
+                    <a *ngIf="order.status != 'Complete'" class="btn" button ion-button icon-start href="tel:+91 864 209 3333"><ion-icon name="call"></ion-icon> HELPLINE</a>
+
+                    <button style="margin-top: 10px" *ngIf="order.status == 'Scheduled'" icon-start (click)="presentFinish()" ion-button block class="btn"><ion-icon name="checkmark"></ion-icon> FINISH JOB</button>
+
+                </div>
+            </ion-col>
+        </ion-row>
+    </div>
+
+    <div class="appointment_details">
+        <ion-list no-lines>
+            <ion-item>
+                <div class="img_box center_img" item-start>
+                    <img src="{{customer.profile_picture}}" class="crop_img invisible" (load)="onImageLoad($event.target)">
+                </div>
+                <h2 class="d-flex">{{customer.name}}</h2>
+                <div class="text-box">
+                    <h3>{{'job_task' | translate}}</h3>
+                    <h4>{{subcat.name}}</h4>
+                </div>
+                <ion-row>
+                    <ion-col col-6>
+                        <div class="text-box">
+                            <h3>{{'job_date' | translate}}</h3>
+                            <h4>{{order.created_at | date:'MMM d, y, h:mm a'}}</h4>
+                        </div>
+                    </ion-col>
+                    <ion-col col-6 *ngIf="['Quoted','Accepted','Complete'].indexOf(order.status) != -1">
+                        <div class="text-box">
+                            <h3>{{'job_cost' | translate}}</h3>
+                            <h4>{{'₹'+order.quotation}}</h4>
+                        </div>
+                    </ion-col>
+                </ion-row>
+                <div *ngIf="order.quotation_note" class="text-box">
+                    <h3>Quotation Note</h3>
+                    <h4>{{order.quotation_note}}</h4>
+                </div>
+                <div class="text-box">
+                    <h3>Job Details</h3>
+                    <h4>{{order.requirement}}</h4>
+                </div>
+                <div class="text-box" *ngIf="(order.status == 'Accepted' || order.status == 'Scheduled') && order.quotation_approved == 'Y'">
+                    <h3>Address</h3>
+                    <h4>{{order.service_address}}</h4>
+                </div>
+                <!-- <div class="text-box" *ngIf="(order.status == 'Accepted' || order.status == 'Scheduled') && order.quotation_approved == 'Y'">
+                    <h3>Contact Number</h3>
+                    <h4><a href="tel:{{customer.contact}}">{{customer.contact}}</a></h4>
+                </div> -->
+                <div class="text-box" *ngIf="(order.status == 'Accepted' || order.status == 'Scheduled') && order.quotation_approved == 'Y'">
+                    <h3>Service Schedule</h3>
+                    <h4>{{order.service_schedule | date : "MMM d, y, h:mm a"}}</h4>
+                </div>
+            </ion-item>
+        </ion-list>
+
+        <ion-grid *ngIf="order.image != null">
+          <ion-row>
+            <ion-col col-4 *ngFor="let img of order.image;let indexOfelement=index;">
+                <div class="imgBg">    
+                    <img src="{{img}}" class="invisible" (load)="onImageLoad($event.target)"  (click)="openPopup(indexOfelement)" />
+                </div>    
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+
+        <div style="margin: 20px 10px 0 10px" *ngIf="(order.status == 'Accepted' || order.status == 'Scheduled') && order.quotation_approved == 'Y'">
+            <a block button ion-button icon-start href="tel:{{customer.contact}}"><ion-icon name="call"></ion-icon> CALL CUSTOMER</a>
+        </div>
+
+        <div style="margin: 20px 10px 0 10px" *ngIf="order.status == 'Complete'">
+            <button (click)="takeOrderNote()" block ion-button class="button-wp-danger" icon-start><ion-icon name="alert"></ion-icon> LEAVE COMMENT</button>
+        </div>
+
+        <br/><br/>
+
+    </div>
+</ion-content>

@@ -1,0 +1,83 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>Earnings</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content class="bg-color" padding>
+	<div *ngIf="showLoader" class="loader-bg">
+        <ion-spinner class="spinner" color="light"></ion-spinner>
+    </div>
+	<ion-card class="top-card">
+	  <ion-card-header>
+	    <ion-card-title class="settlement-amount">{{earnings.psettlement ? (earnings.psettlement | currency : "₹") : (0 | currency : "₹")}}</ion-card-title>
+	    <ion-card-title>Total Pending Settlement</ion-card-title>
+	  </ion-card-header>
+	</ion-card>
+
+	<ion-card class="top2-card">
+	  <ion-card-header>
+	    <ion-card-title class="settlement-amount">{{earnings.owe ? (earnings.owe | currency : "₹") : (0 | currency : "₹")}}</ion-card-title>
+	    <ion-card-title>I Owe Everything</ion-card-title>
+	  </ion-card-header>
+	</ion-card>
+
+	<ion-grid>
+		<ion-row>
+			<ion-col col-6>
+				<ion-card class="no-margin">
+					<ion-card-content>
+						<div>
+							<h2>{{earnings.gross_today ? (earnings.gross_today | currency : "₹") : (0 | currency : "₹")}}</h2>
+							<h5>Today's Gross Earning</h5>
+						</div>	
+					</ion-card-content>
+				</ion-card>		
+			</ion-col>
+			<ion-col col-6>
+				<ion-card class="no-margin">
+					<ion-card-content>
+						<div>
+							<h2>{{earnings.net_today ? (earnings.net_today | currency : "₹") : (0 | currency : "₹")}}</h2>
+							<h5>Today's Net Earning</h5>
+						</div>	
+					</ion-card-content>
+				</ion-card>		
+			</ion-col>
+			<ion-col col-6>
+				<ion-card class="no-margin">
+					<ion-card-content>
+						<div>
+							<h2>{{earnings.total_net_earnings ? (earnings.total_net_earnings | currency : "₹") : (0 | currency : "₹")}}</h2>
+							<h5>Net Earnings Till Date</h5>
+						</div>	
+					</ion-card-content>
+				</ion-card>		
+			</ion-col>
+			<ion-col col-6>
+				<ion-card class="no-margin">
+					<ion-card-content>
+						<div>
+							<h2>{{earnings.total_net_settlement ? (earnings.total_net_settlement | currency : "₹") : (0 | currency : "₹")}}</h2>
+							<h5>Total Settlement Till Date</h5>
+						</div>	
+					</ion-card-content>
+				</ion-card>		
+			</ion-col>	
+		</ion-row>	
+	</ion-grid>
+
+	<h3 *ngIf="earnings.daily_earnings?.length" style="color:white; padding-left: 10px">Daily Earnings</h3>
+	<ion-card  *ngIf="earnings.daily_earnings?.length" class="daily">
+		<ion-card-content>
+			<ion-list>
+			  <ion-item *ngFor="let data of earnings.daily_earnings">
+			    <ion-icon name="cash" class="icon-md-primary" item-start></ion-icon>
+			      {{data.date | date}}
+			    <h2 item-end>{{data.amount | currency : "₹"}}</h2>
+			  </ion-item>
+			</ion-list>
+		</ion-card-content>
+	</ion-card>		
+
+</ion-content>	

@@ -1,0 +1,25 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title></ion-title>
+    </ion-navbar>
+    <div class="text_box">
+        <h2>{{'forgot_password' | translate}}</h2>
+        <h3>{{'forgot_text_1' | translate}}<br>{{'forgot_text_2' | translate}}</h3>
+    </div>
+</ion-header>
+
+<ion-content class="bg-img">
+    <div *ngIf="showLoader" class="loader-bg">
+        <ion-spinner class="spinner" color="light"></ion-spinner>
+    </div>
+    <div class="form">
+        <ion-list no-lines>
+            <ion-item>
+                <ion-icon class="material-icons" item-start>phone</ion-icon>
+                <ion-label floating>{{'mobile_number' | translate}}</ion-label>
+                <ion-input type="text" maxlength="10" [(ngModel)]="mobile"></ion-input>
+            </ion-item>
+        </ion-list>
+        <button ion-button block class="btn" (click)="sendEmail()"> {{'Continue' | translate}}</button>
+    </div>
+</ion-content>

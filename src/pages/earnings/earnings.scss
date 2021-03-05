@@ -1,0 +1,93 @@
+page-earnings {
+	.top-card{
+		background: #13DE81!important;
+		border-radius: 10px!important;
+
+		.settlement-amount{
+			font-size: 4rem!important;
+		}
+
+		.card-title{
+			font-size: 2rem;
+			margin-top: 0;
+			padding-top: 5px;
+		}
+
+		.card-content-md{
+			font-size: 1.8rem!important;
+			text-align: center;
+		}
+	}
+
+	.top2-card{
+		background: #f36060!important;
+		border-radius: 10px!important;
+
+		.settlement-amount{
+			font-size: 4rem!important;
+		}
+
+		.card-title{
+			font-size: 2rem;
+			margin-top: 0;
+			padding-top: 5px;
+		}
+
+		.card-content-md{
+			font-size: 1.8rem!important;
+			text-align: center;
+		}
+	}
+
+	.daily{
+		border-radius: 10px;
+
+		.card-content .item-md{
+			border-bottom: 1px solid #ccc;
+			font-size: 1.1em!important;
+		}
+
+		.card-content .item-md:last-child{
+			border-bottom: 0
+		}
+	}
+
+	.no-margin{
+		margin: 0;
+		width: 100%!important;
+		min-height: 90px;
+		border-radius: 10px!important;
+		background: skyblue;
+
+		.card-content{
+			min-height: 90px;
+		}
+	}
+
+	.col div{
+		display: flex;
+	    flex-direction: column;
+	    justify-content: center;
+	    min-height: 65px;
+
+	    h2{
+	    	font-size: 2.2rem;
+	    }
+	}
+
+	ion-card {
+		.item {
+			padding: 0;
+			ion-icon {
+				margin: 0;
+			}
+			.item-inner {
+				margin-left: 10px!important;
+				padding-right: 0!important;
+				h2 {
+					margin: 0 !important;
+				}
+			}
+		} 
+	}
+}

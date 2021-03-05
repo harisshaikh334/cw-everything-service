@@ -1,0 +1,62 @@
+page-faq {
+    .list {
+        width: calc(100% - 20px);
+        margin: 0 auto;
+        margin-top: 20px;
+
+        .item {
+            padding: 20px 17px 0 17px;
+            background: $item_bg;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            height: 60px;
+            overflow: hidden;
+
+            .item-inner {
+                padding: 0;
+
+                .label {
+                    margin: 0;
+                    white-space: normal;
+
+                    h2 {
+                        color: $white;
+                        font-size: 1.85rem;
+                        font-weight: 500;
+                        padding-bottom: 15px;
+
+                        ion-icon {
+                            color: $theme-color;
+                            transition: all .5s;
+                        }
+                    }
+
+                    p {
+                        color: $white;
+                        padding-bottom: 10px;
+                        line-height: 23px;
+                        height: 0;
+                        overflow: hidden;
+                    }
+                }
+            }
+
+            &.active {
+                transition: all .5s;
+                height: 100%;
+
+                .item-inner .label {
+                    ion-icon {
+                        transform: rotate(180deg);
+                        transition: all .5s;
+                    }
+
+                    p {
+                        height: 100%;
+                        transition: all .5s;
+                    }
+                }
+            }
+        }
+    }
+}

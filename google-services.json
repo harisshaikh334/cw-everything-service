@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "284908343325",
+    "firebase_url": "https://everything-2585a.firebaseio.com",
+    "project_id": "everything-2585a",
+    "storage_bucket": "everything-2585a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:284908343325:android:734fb94dd2f6a9770eb6f4",
+        "android_client_info": {
+          "package_name": "com.everything.serviceprovider"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "284908343325-gma9aoll8dvnp97tvr29m8mj1j62f0l4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB3CIxdtzPk-a9u4Ej83wWLS6G-6PZ4Kng"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "284908343325-gma9aoll8dvnp97tvr29m8mj1j62f0l4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,1 @@
+export const APIURL = 'https://everythingservices.in/admin14/sapi/v1/';

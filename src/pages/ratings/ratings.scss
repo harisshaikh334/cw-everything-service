@@ -1,0 +1,204 @@
+page-ratings {
+    .header .toolbar .title .toolbar-title {
+        display: block;
+        text-align: center;
+        font-size: 1.85rem !important;
+    }
+
+    .banner {
+        h1 {
+            margin: 0 auto;
+            color: $white;
+            background: $theme-color;
+            width: 100px;
+            border-radius: 6px;
+            height: 50px;
+            line-height: 50px;
+            font-size: 3rem;
+            margin-top: 7px;
+            margin-bottom: 18px;
+
+        }
+
+        h2 {
+            color: lighten($info, 20%);
+            margin: 0;
+            font-size: 1.6rem;
+            font-weight: 500;
+        }
+    }
+
+    .rating_box {
+        padding: 30px 20px 15px 20px;
+        background: $item_bg;
+        width: calc(100% - 20px);
+        margin: 26px auto;
+        border-radius: 5px;
+
+        .rating {
+            width: 100%;
+            margin-bottom: 17px;
+
+            p {
+                margin: 0;
+                color: $white;
+                font-size: 1.45rem;
+                margin-left: 14px;
+
+                &.rating-num {
+                    min-width: 36px;
+                    width: 36px;
+                    display: flex;
+                    margin: 0 !important;
+                    margin-right: 10px !important;
+
+                    ion-icon {
+                        color: $white;
+                        font-size: 1.5rem;
+                        text-align: right;
+                        display: block;
+                        margin: 0 4px;
+                        display: block;
+                    }
+                }
+
+            }
+
+            .rating_scale {
+                width: 100%;
+                background: dar;
+                display: block;
+                height: 7px;
+                background: $bg-color !important;
+                position: relative;
+                overflow: hidden;
+                border-radius: 50px;
+
+                .rating_scale_active {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    height: 100%;
+                    background: $theme-color;
+                    border-radius: 50px;
+                }
+            }
+        }
+
+    }
+
+    .list {
+        width: calc(100% - 26px);
+        margin: 0 auto;
+        //margin-top: 15px;
+        padding-top: 0px;
+
+        h2 {
+            &.d-flex {
+                color: $white;
+                margin: 0;
+                font-size: 1.8rem;
+                margin-bottom: 20px;
+                margin-top: 10px;
+
+                span {
+                    color: $theme-color;
+                }
+            }
+        }
+
+        .item {
+            padding: 10px 10px 10px 0px;
+            background: none;
+            border-radius: 5px;
+            margin: 0 auto;
+            margin-bottom: 10px;
+            align-items: flex-start;
+
+            &::before {
+                content: '';
+                position: absolute;
+                right: 0;
+                top: 0;
+                width: calc(100% - 44px);
+                height: 100%;
+                background: $item_bg;
+                border-radius: 5px;
+            }
+
+            .img_box {
+                width: 60px;
+                height: 60px;
+                border-radius: 5px;
+                margin: 0 !important;
+                margin-right: 16px !important;
+                box-shadow: 0 18px 13px -5px rgba(0, 0, 0, 0.34);
+
+            }
+
+            .item-inner {
+                padding: 0;
+
+                .label {
+                    margin: 0;
+                    position: relative;
+                    z-index: 99;
+                    white-space: normal;
+
+                    h2 {
+                        color: $white;
+                        font-size: 1.35rem;
+                        font-weight: 500;
+                        margin: 0;
+                        margin-bottom: 3px;
+
+                        span {
+                            white-space: nowrap;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            color: $white;
+                        }
+
+                        .badge {
+                            display: flex;
+                            align-items: center;
+                            font-size: 1.1rem;
+                            font-weight: 500;
+                            padding: 4px 0px 4px 4px;
+                            border-radius: 4px;
+                            color: $white;
+                            background: $theme-color;
+                            min-width: 35px;
+
+                            ion-icon {
+                                color: $white;
+                                font-size: 1rem;
+                                margin: 0 4px;
+
+                            }
+                        }
+
+                    }
+
+                    h3 {
+                        margin: 0;
+                        color: $gray;
+                        font-size: 1.2rem;
+                        margin-bottom: 10px;
+                    }
+
+                    p {
+                        margin: 0;
+                        color: $white;
+                        font-weight: 400;
+                        letter-spacing: .5px;
+                        line-height: 16px;
+                        font-size: 1.3rem;
+
+                    }
+                }
+            }
+        }
+    }
+}

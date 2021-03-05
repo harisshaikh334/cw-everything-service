@@ -1,0 +1,62 @@
+<ion-content class="bg-img">
+    <div *ngIf="showLoader" class="loader-bg">
+        <ion-spinner class="spinner" color="light"></ion-spinner>
+    </div>    
+    <div class="form">
+        <form [formGroup]="loginForm">
+            <div align="center">
+                <img src="assets/imgs/logo_new.png" align="center" height="150" />
+                <h5 class="text-wp-light" text-center style="margin-top: 3vh">If you haven't signed up yet, <a (click)="signup()">Sign Up</a></h5>
+            </div>    
+            <ion-list no-lines>
+                <ion-item [class.invalid]="!loginForm.controls.mobile.valid && submitAttempt">
+                    <ion-icon class="material-icons" item-start>phone_android</ion-icon>
+                    <ion-label floating>Mobile Number</ion-label>
+                    <ion-input autocomplete="off" type="text" formControlName="mobile" maxlength="10"></ion-input>
+                </ion-item>
+                <p class='error' *ngIf="!loginForm.controls.mobile.valid  && submitAttempt">Please enter a valid mobile number.</p>
+
+                <ion-item [class.invalid]="!loginForm.controls.password.valid && submitAttempt">
+                    <ion-icon class="material-icons" item-start>lock</ion-icon>
+                    <ion-label floating>Password</ion-label>
+                    <ion-input autocomplete="off" formControlName="password" type="password" *ngIf="!showPasswordText"></ion-input>
+                    <ion-input autocomplete="off" formControlName="password" type="text" *ngIf="showPasswordText"></ion-input>
+                    <button ion-button clear color="dark" type="button" item-right (click)="showPasswordText = !showPasswordText">
+                        <ion-icon style="font-size: 20px; margin-top: 13px" name="eye"></ion-icon>
+                    </button>
+                </ion-item>
+                <p class='error' *ngIf="!loginForm.controls.password.valid  && submitAttempt">Please enter a password.</p>
+
+                <button ion-button block class="btn" (click)="login()"> {{'Login'}}</button>
+            </ion-list>
+        </form>    
+        <p text-right><a style="font-size: 1.5rem" (click)="forgot()" href="#">{{"Forgot Password?"}}</a></p>
+        <div align="center" class="social-icons">
+            <a href="#" onclick="window.open('https://bit.ly/3hwDQRN', '_system', 'location=yes');">
+                <svg width="25" height="25" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <use xlink:href="assets/imgs/feather-sprite.svg#youtube"/>
+                </svg>
+            </a>
+            <a href="#" onclick="window.open('https://bit.ly/2E4Fk8c', '_system', 'location=yes');">
+                <svg width="25" height="25" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <use xlink:href="assets/imgs/feather-sprite.svg#facebook"/>
+                </svg>
+            </a>
+            <a href="#" onclick="window.open('https://twitter.com/everythingserv2', '_system', 'location=yes');">
+                <svg width="25" height="25" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <use xlink:href="assets/imgs/feather-sprite.svg#twitter"/>
+                </svg>
+            </a>
+            <a href="#" onclick="window.open('http://www.linkedin.com/in/everything-services', '_system', 'location=yes');">
+                <svg width="25" height="25" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <use xlink:href="assets/imgs/feather-sprite.svg#linkedin"/>
+                </svg>
+            </a>
+            <a href="#" onclick="window.open('https://www.instagram.com/everything_services/', '_system', 'location=yes');">
+                <svg width="25" height="25" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <use xlink:href="assets/imgs/feather-sprite.svg#instagram"/>
+                </svg>
+            </a>
+        </div>    
+    </div>
+</ion-content>

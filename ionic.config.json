@@ -1,0 +1,7 @@
+{
+  "name": "provider",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}

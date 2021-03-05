@@ -1,0 +1,24 @@
+<!--
+<ion-header>
+    <ion-navbar>
+        <ion-title></ion-title>
+    </ion-navbar>
+</ion-header>
+-->
+
+<ion-content class="bg-img">
+    <div class="logo_box">
+        <img src="assets/imgs/logo.png">
+    </div>
+</ion-content>
+<ion-footer no-border>
+    <p text-center>{{'select_preffered_app_language' | translate}}</p>
+    <ion-row>
+        <ion-col col-6>
+            <button ion-button block class="btn francaic" (click)="signin()"> {{'francaic' | translate}}</button>
+        </ion-col>
+        <ion-col col-6>
+            <button ion-button block class="btn" (click)="signin()"> {{'english' | translate}}</button>
+        </ion-col>
+    </ion-row>
+</ion-footer>

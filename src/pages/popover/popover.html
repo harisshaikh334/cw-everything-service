@@ -1,0 +1,34 @@
+<ion-list radio-group [(ngModel)]="filter">
+  <ion-list-header>
+    FILTER BY STATUS
+  </ion-list-header>
+
+  <ion-item>
+    <ion-label>New Job</ion-label>
+    <ion-radio (click)="handleInput('Pending')" value="Pending"></ion-radio>
+  </ion-item>
+  <ion-item>
+    <ion-label>Quoted</ion-label>
+    <ion-radio (click)="handleInput('Quoted')" value="Quoted"></ion-radio>
+  </ion-item>
+  <ion-item>
+    <ion-label>Scheduled</ion-label>
+    <ion-radio (click)="handleInput('Scheduled')" value="Scheduled"></ion-radio>
+  </ion-item>
+  <ion-item>
+    <ion-label>Cancelled</ion-label>
+    <ion-radio (click)="handleInput('Cancelled')" value="Cancelled"></ion-radio>
+  </ion-item>
+  <ion-item>
+    <ion-label>Rejected</ion-label>
+    <ion-radio (click)="handleInput('Rejected')" value="Rejected"></ion-radio>
+  </ion-item>
+  <ion-item>
+    <ion-label>Complete</ion-label>
+    <ion-radio (click)="handleInput('Complete')" value="Complete"></ion-radio>
+  </ion-item>
+  <ion-item>
+    <ion-label>All</ion-label>
+    <ion-radio (click)="handleInput('All')" value="All"></ion-radio>
+  </ion-item>
+</ion-list>

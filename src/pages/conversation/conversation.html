@@ -1,0 +1,43 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            <div class="user_profile d-flex">
+                <div class="center_img profile_img">
+                    <img src="assets/imgs/plumber_profile.png" class="crop_img">
+                </div>
+                <div class="text_box">
+                    <h2>Samantha Smith</h2>
+                    <p class="d-flex">Plumber</p>
+                </div>
+            </div>
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content class="bg-color">
+    <div class="chat_container d-flex">
+        <div class="chat_box d-flex received">
+            <div class="chat">
+                <h2>Hey George, <br>Available?</h2>
+                <p>12:01 pm</p>
+            </div>
+        </div>
+        <div class="chat_box d-flex  send">
+            <div class="chat">
+                <h2>Hello Ma,m <br>How may I help you?</h2>
+                <p>12:02 pm</p>
+            </div>
+        </div>
+    </div>
+</ion-content>
+
+<ion-footer no-border>
+    <div class="form">
+        <ion-list no-lines>
+            <ion-item>
+                <ion-input type="text" placeholder="{{'write_your_message' | translate}}"></ion-input>
+                <ion-icon item-end class="material-icons">send</ion-icon>
+            </ion-item>
+        </ion-list>
+    </div>
+</ion-footer>

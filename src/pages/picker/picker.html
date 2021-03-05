@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Select your skills
+    </ion-title>
+  </ion-navbar>
+  <ion-searchbar (ionChange)="filterItems($event.value)"></ion-searchbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="showLoader" class="loader-bg">
+      <ion-spinner class="spinner" color="light"></ion-spinner>
+  </div>
+  
+  <ion-list *ngFor="let item of filteredskills">
+    <ion-list-header>{{item.category}}</ion-list-header>
+
+    <ion-item *ngFor="let sc of item.subcat">
+      <ion-label>{{sc.name}} <p>(-) {{sc.commission_perc}}% Commission</p></ion-label>
+      <ion-checkbox [(ngModel)]="subcat_id[sc.id]" (ionChange)="updateSelected(sc)" color="secondary"></ion-checkbox>
+    </ion-item>
+
+  </ion-list>
+
+</ion-content>
+
+<ion-footer>
+	<ion-grid>
+  		<ion-row>
+		    <ion-col col-9>
+		      <h4>Registration Cost : ₹{{this.total}}</h4>
+		    </ion-col>
+		    <ion-col>		
+  				<button ion-button outline float-right (click)="goBackWithSkills()">OK</button>				
+  			</ion-col>
+  		</ion-row>
+  	</ion-grid>		
+</ion-footer>

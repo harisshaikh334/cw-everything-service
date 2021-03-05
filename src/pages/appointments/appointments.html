@@ -1,0 +1,87 @@
+<ion-header class="bg-color">
+    <ion-navbar>
+        <ion-title>{{'appointments' | translate}}</ion-title>
+        <ion-buttons *ngIf="approved == 1" end>
+          <button (click)="openPopover($event)" ion-button icon-only>
+            <ion-icon name="funnel" style="color: white"></ion-icon>
+          </button>
+        </ion-buttons>
+    </ion-navbar>
+    <ion-list *ngIf="showfee == true">
+        <ion-item>
+          <p>You have pending unpaid registered services. <a href='#' (click)="openPay()">PAY NOW</a></p>
+        </ion-item>
+    </ion-list>
+    <ion-segment *ngIf="approved == 1" [(ngModel)]="appointments_tab">
+        <ion-segment-button value="upcoming">
+            {{'upcoming' | translate}}
+        </ion-segment-button>
+        <ion-segment-button value="past">
+            {{'past' | translate}}
+        </ion-segment-button>
+    </ion-segment>
+</ion-header>
+
+<ion-content class="bg-color">
+    <div *ngIf="showLoader" class="loader-bg">
+        <ion-spinner class="spinner" color="light"></ion-spinner>
+    </div>    
+
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content
+            pullingIcon="arrow-dropdown"
+            pullingText="Pull to refresh"
+            refreshingSpinner="bubbles"
+        ></ion-refresher-content>
+    </ion-refresher>
+
+    <div class="tab_container" *ngIf="approved == 1" [ngSwitch]="appointments_tab">
+        <ion-list no-lines *ngSwitchCase="'upcoming'">
+            <ion-item *ngFor="let item of filterOrders('Pending')" (click)="appointment_status(item.id)" class="{{item.status | lowercase}} item item-block item-md">
+                <div class="img_box center_img" item-start>
+                    <img src="{{item.customers.profilepic}}" class="crop_img">
+                </div>
+                <h2 class="d-flex"><span>{{item.customers.name}}</span>
+                    <span class="end">{{item.status == 'Pending' ? 'New Job' : item.status | translate}}</span>
+                </h2>
+                <h3 class="d-flex"><span class="start">{{item.subcategory}}</span> <span style="white-space: normal; text-align: right" class="end">{{item.status == 'Scheduled' ? (item.service_schedule | date : "dd MMM, yyyy") : (item.created_at | date : "dd MMM, yyyy")}}</span></h3>
+                <p>{{item.requirement}}</p>
+            </ion-item>
+
+            <div *ngIf="filterOrders('Pending').length == 0" class="emptydata" align="center">
+                <img src="assets/imgs/nodata.png" style="max-height: 150px" />
+                <h4>Awaiting new appointments.</h4>
+            </div>
+        </ion-list>
+
+        <ion-list no-lines *ngSwitchCase="'past'">
+            <ion-item *ngFor="let item of filterOrders('Past')" (click)="appointment_status(item.id)" class="{{item.status == 'Complete' && item.is_paid == 0 ? 'rejected' : item.status | lowercase}} item item-block item-md">
+                <div class="img_box center_img" item-start>
+                    <img src="{{item.customers.profilepic}}" class="crop_img">
+                </div>
+                <h2 class="d-flex"><span>{{item.customers.name}}</span>
+                    <span class="end">{{item.status == 'Complete' && item.is_paid == 0 ? 'Payment Pending' : item.status}}</span>
+                </h2>
+                <h3 class="d-flex"><span class="start">{{item.subcategory}}</span> <span class="end">{{item.created_at | date}}</span></h3>
+                <p>{{item.requirement}}</p>
+            </ion-item>
+
+            <div *ngIf="filterOrders('Past').length == 0" class="emptydata" align="center">
+                <ion-icon name="close-circle" class="icon-md-primary" style="zoom:8.0;"></ion-icon>
+                <h4>No data found.</h4>
+            </div>
+        </ion-list>
+
+    </div>
+
+    <div align="center" style="width: 100%; position: absolute; top: 45%; padding: 0 20px; transform: translateY(-50%);" *ngIf="approved == 0">
+        <div *ngIf="!pancard">
+            <h5 class="text-md-light">You will not be able to receive orders until you submit relevant documents.</h5>
+            <button ion-button (click)="my_profile()">Complete KYC</button>
+        </div>
+        <div *ngIf="pancard">
+            <img src="assets/imgs/wait.jpg" style="border-radius: 50%; width: 200px" />
+            <h5 class="text-md-light">Your documents are under review.</h5>
+        </div>    
+    </div>    
+</ion-content>

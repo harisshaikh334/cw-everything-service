@@ -1,0 +1,43 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>{{'your_current_ratings' | translate}}</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content class="bg-color">
+    <div *ngIf="showLoader" class="loader-bg">
+        <ion-spinner class="spinner" color="light"></ion-spinner>
+    </div>
+    <div class="banner" text-center>
+        <h1>{{data.average != null ? data.average : 'N/A'}} <ion-icon class="material-icons">star</ion-icon>
+        </h1>
+        <h2>Average Rating by {{data.count}} {{'people' | translate}}</h2>
+    </div>
+    <div class="rating_box">
+        <div class="rating d-flex" *ngFor="let item of ratings">
+            <p class="rating-num d-flex ">{{item.rating}} <ion-icon name="md-star" class="end"></ion-icon>
+            </p>
+            <div class="rating_scale">
+                <div class="rating_scale_active" [ngStyle]="{'width': data.count > 0 ? ((item.cnt/data.count)*100)+'%' : '0%'}">
+                </div>
+            </div>
+            <p>{{item.cnt}}</p>
+        </div>
+    </div>
+
+    <ion-list *ngIf="data.reviews != ''" no-lines>
+        <h2 class="d-flex">{{'recent_ratings' | translate}} <span class="end" (click)="all_reviews()">{{'read_all' | translate}}</span></h2>
+        <ion-item *ngFor="let item of data.reviews">
+            <div class="img_box center_img" item-start>
+                <img src="{{item.customer.profilepic}}" class="crop_img">
+            </div>
+            <h2 class="d-flex"><span>{{item.customer.name}}</span>
+                <ion-badge class="end">{{item.rating}} <ion-icon class="material-icons">star</ion-icon>
+                </ion-badge>
+            </h2>
+            <h3>{{item.subcategory}} | {{item.created_at}}</h3>
+            <p>{{item.comment}}</p>
+        </ion-item>
+
+    </ion-list>
+</ion-content>

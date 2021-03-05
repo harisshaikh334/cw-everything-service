@@ -1,0 +1,35 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>{{'purchase_subscription' | translate}}</ion-title>
+    </ion-navbar>
+    <ion-list no-lines>
+        <ion-item (click)="purchase_plan()">
+            <h3 class="d-flex">Premium Plan <span class="end">$50.00</span></h3>
+            <h4>Get Unlimited Leads for a Month</h4>
+        </ion-item>
+    </ion-list>
+</ion-header>
+
+<ion-content class="bg-img">
+    <div class="">
+        <ion-list no-lines>
+            <h2>{{'payment_methods' | translate}}</h2>
+            <ion-item>
+                <img src="assets/imgs/card.png" item-start>
+                <h3>{{'credit_card' | translate}}</h3>
+            </ion-item>
+            <ion-item>
+                <img src="assets/imgs/card.png" item-start>
+                <h3>{{'debit_card' | translate}}</h3>
+            </ion-item>
+            <ion-item>
+                <img src="assets/imgs/paypal.png" item-start>
+                <h3>{{'paypal' | translate}}</h3>
+            </ion-item>
+            <ion-item>
+                <img src="assets/imgs/google_play.png" item-start>
+                <h3>{{'googleplay' | translate}}</h3>
+            </ion-item>
+        </ion-list>
+    </div>
+</ion-content>

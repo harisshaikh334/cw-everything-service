@@ -1,0 +1,75 @@
+page-signup {
+    .header {
+        .text_box {
+            position: relative;
+            top: -9px;
+            padding: 0 20px;
+
+            h2 {
+                margin: 0;
+                color: $white;
+                font-size: 2.8rem;
+                font-weight: 500;
+                line-height: 32px;
+                letter-spacing: .5px;
+                padding-bottom: 10px;
+            }
+
+            h3 {
+                margin: 0;
+                color: lighten($gray, 7%);
+                font-size: 1.4rem;
+                letter-spacing: .5px;
+                font-weight: 400;
+            }
+        }
+    }
+
+    .form {
+        .list {
+            margin-bottom: 20px;
+
+            .item:first-child{
+                margin: 0 !important;
+            }
+
+            .item {
+                margin-top: 25px;
+                margin-bottom: 0px!important;
+
+                button.btn{
+                    margin-top: 25px;
+                }
+
+                .clickEnableCls{
+                   pointer-events: all !important;
+                   white-space: normal;
+                   font-size: 1.5rem;
+                }
+                
+                .invalid{
+                    border-bottom: 2px solid red!important
+                }
+
+                .checkbox-md.checkbox-disabled, .item-md.item-checkbox-disabled ion-label{
+                    opacity: 1!important;
+                }
+
+                .checkbox-md {
+                    margin-right: 18px !important;
+                }
+
+                .checkbox-md .checkbox-icon{
+                    width: 25px;
+                    height: 25px;
+                }
+
+                .checkbox-md .checkbox-checked .checkbox-inner{
+                    left: 7px;
+                    width: 7px;
+                    height: 16px
+                }
+            }
+        }
+    }
+}

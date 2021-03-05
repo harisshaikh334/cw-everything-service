@@ -1,0 +1,49 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title></ion-title>
+    </ion-navbar>
+    <div class="text_box">
+        <h2>{{'contact_us' | translate}}</h2>
+        <p>{{'contact_us_text' | translate}}</p>
+    </div>
+</ion-header>
+
+<ion-content class="bg-img">
+    <div *ngIf="showLoader" class="loader-bg">
+        <ion-spinner class="spinner" color="light"></ion-spinner>
+    </div>
+    <div class="banner form">
+        <ion-list no-lines>
+            <ion-item>
+                <ion-icon class="material-icons" item-start>phone</ion-icon>
+                <p>{{'call_us' | translate}}</p>
+                <h2><a href="tel:+91 864 209 3333">+91 864 209 3333</a></h2>
+            </ion-item>
+            <ion-item>
+                <ion-icon class="material-icons" item-start>email</ion-icon>
+                <p>{{'mail_us' | translate}}</p>
+                <h2><a href="mailto:support@everythingservices.in">support@everythingservices.in</a></h2>
+            </ion-item>
+        </ion-list>
+    </div>
+    <div class="form">
+        <h1>{{'or_write_us' | translate}}</h1>
+        <form [formGroup]="contactForm">
+            <ion-list no-lines>
+                <ion-item>
+                    <ion-icon class="material-icons" item-start>email</ion-icon>
+                    <ion-label floating>{{'email_address' | translate}}</ion-label>
+                    <ion-input type="text" formControlName="email" readonly value="{{user.email}}"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-icon class="material-icons" item-start>create</ion-icon>
+                    <ion-label floating>{{'write_your_message' | translate}}</ion-label>
+                    <ion-textarea formControlName="message" autosize rows="6"></ion-textarea>
+                </ion-item>
+            </ion-list>
+        </form>    
+    </div>
+</ion-content>
+<ion-footer no-border>
+    <button (click)="sendMsg()" ion-button full no-margin class="btn"> {{'submit' | translate}}</button>
+</ion-footer>

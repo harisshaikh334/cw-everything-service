@@ -1,0 +1,71 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>{{'enter_sign_up_info' | translate}}</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content class="bg-img">
+    <div *ngIf="showLoader" class="loader-bg">
+        <ion-spinner class="spinner" color="light"></ion-spinner>
+    </div> 
+    <div class="form">
+        <form [formGroup]="signupForm">
+            <ion-list no-lines>
+                <ion-item [class.invalid]="!signupForm.controls.name.valid && (signupForm.controls.name.dirty || submitAttempt)">
+                    <ion-icon class="material-icons" item-start>person</ion-icon>
+                    <ion-label floating>{{'full_name' | translate}}</ion-label>
+                    <ion-input autocomplete="off" formControlName="name" type="text"></ion-input>
+                </ion-item>
+                <p class='error' *ngIf="!signupForm.controls.name.valid  && (signupForm.controls.name.dirty || submitAttempt)">Please enter your full name.</p>
+
+                <ion-item [class.invalid]="!signupForm.controls.email.valid && (signupForm.controls.email.dirty || submitAttempt)">
+                    <ion-icon class="material-icons" item-start>email</ion-icon>
+                    <ion-label floating>{{'email_address' | translate}}</ion-label>
+                    <ion-input autocomplete="off" formControlName="email" type="text"></ion-input>
+                </ion-item>
+                <p class='error' *ngIf="!signupForm.controls.email.valid  && (signupForm.controls.email.dirty || submitAttempt)">Please enter a valid email address.</p>
+
+                <ion-item [class.invalid]="!signupForm.controls.contact.valid && (signupForm.controls.contact.dirty || submitAttempt)">
+                    <ion-icon class="material-icons" item-start>phone_android</ion-icon>
+                    <ion-label floating>{{'mobile_number' | translate}}</ion-label>
+                    <ion-input autocomplete="off" (ionBlur)="sendOTP()" formControlName="contact" maxlength="10" type="tel"></ion-input>
+                </ion-item>
+                <p class='error' *ngIf="!signupForm.controls.contact.valid && (signupForm.controls.contact.dirty || submitAttempt)">Please enter your mobile number.</p>
+                <p text-right *ngIf="signupForm.controls.contact.valid"><a href="#" (click)="resend()">Resend OTP?</a></p>
+
+                 <ion-item [class.invalid]="!signupForm.controls.password.valid && (signupForm.controls.password.dirty || submitAttempt)">
+                    <ion-icon class="material-icons" item-start>lock</ion-icon>
+                    <ion-label floating>Password</ion-label>
+                    <ion-input autocomplete="off" formControlName="password" type="password" *ngIf="!showPasswordText"></ion-input>
+                    <ion-input autocomplete="off" formControlName="password" type="text" *ngIf="showPasswordText"></ion-input>
+                    <button ion-button clear color="dark" type="button" item-right (click)="showPasswordText = !showPasswordText">
+                        <ion-icon style="font-size: 20px; margin-top: 13px" name="eye"></ion-icon>
+                    </button>
+                </ion-item>
+                <p class='error' *ngIf="!signupForm.controls.password.valid  && (signupForm.controls.password.dirty || submitAttempt)">Please enter minimum 8 character password.</p>
+
+                <ion-item [class.invalid]="!signupForm.controls.skills.valid && (signupForm.controls.skills.dirty || submitAttempt)">
+                    <ion-icon class="material-icons" item-start>work_outline</ion-icon>
+                    <ion-label floating>Skills</ion-label>
+                    <ion-input autocomplete="off" (ionFocus)="openPicker()" formControlName="skills" type="text"></ion-input>
+                </ion-item>
+                <p class='error' *ngIf="!signupForm.controls.skills.valid  && (signupForm.controls.skills.dirty || submitAttempt)">Please enter skills you want to work for.</p>
+
+                <ion-item class="verification_code">
+                    <ion-icon class="material-icons" item-start>mobile_friendly</ion-icon>
+                    <ion-label floating>{{'enter_verification_code' | translate}}</ion-label>
+                    <ion-input autocomplete="off" type="number" formControlName="otp"></ion-input>
+                </ion-item>
+                <p class='error' *ngIf="!signupForm.controls.otp.valid && (signupForm.controls.otp.dirty || submitAttempt)">Please enter valid OTP.</p>
+
+                <ion-item>
+                    <ion-label class="clickEnableCls">I agree to all the <a (click)="openTerms()" class="text-md-secondary">Terms &amp; Conditions</a> of Everything Services Pvt. Ltd.</ion-label>
+                    <ion-checkbox disabled checked="true" color="success"></ion-checkbox>
+                </ion-item>
+
+            </ion-list>
+            <button ion-button block class="btn" (click)="signup()"> {{'signup' | translate}}</button>
+            <br/><br/>
+        </form>    
+    </div>
+</ion-content>

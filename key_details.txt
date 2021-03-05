@@ -1,0 +1,2 @@
+Alias : everything
+passphrase : Alimaula@786

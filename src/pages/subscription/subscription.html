@@ -1,0 +1,29 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>{{'your_subscription' | translate}}</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content class="bg-img">
+    <div class="banner" text-center>
+        <h1>03</h1>
+        <h2>Ieads remaining today</h2>
+        <h2>21 days left</h2>
+    </div>
+
+    <ion-list no-lines>
+        <h2>{{'purchase_subscription' | translate}}</h2>
+        <ion-item (click)="purchase_plan()">
+            <h3 class="d-flex">Premium Plan <span class="end">$50.00</span></h3>
+            <h4>Get Unlimited Leads for a Month</h4>
+        </ion-item>
+        <ion-item (click)="purchase_plan()">
+            <h3 class="d-flex">Economy Plan <span class="end">$30.00</span></h3>
+            <h4>Get 5 evryday Leads for a Month</h4>
+        </ion-item>
+        <ion-item (click)="purchase_plan()">
+            <h3 class="d-flex">Premium Plan <span class="end">$10.00</span></h3>
+            <h4>Get Unlimited Leads for a Month</h4>
+        </ion-item>
+    </ion-list>
+</ion-content>

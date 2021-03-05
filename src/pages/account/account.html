@@ -1,0 +1,59 @@
+<ion-header class="bg-img">
+    <ion-navbar>
+        <ion-title>
+            {{'account' | translate}}
+        </ion-title>
+    </ion-navbar>
+    <div class="profile d-flex">
+        <div class="profile_img center_img">
+            <img onload="this.classList.remove('loading')" onerror="this.onerror=null;this.src='assets/imgs/avatar.png';" src="{{ user.upload_photo != '' ? baseurl+'../../'+user.upload_photo : 'assets/imgs/avatar.png'}}" class="crop_img loading">
+        </div>
+        <div class="profile_details">
+            <h2>{{user.shop_name || user.name}}</h2>
+            <p class="d-flex">+91 {{user.contact}}</p>
+            <ion-item style="background: transparent; padding: 0">
+                <ion-label color="light">{{online ? 'Online' : 'Offline'}}</ion-label>
+                <ion-toggle (ionChange)="setOnlineStatus()" [(ngModel)]="online" checked color="success"></ion-toggle>
+            </ion-item>    
+        </div>
+    </div>
+</ion-header>
+
+<ion-content class="bg-color">
+    <div *ngIf="showLoader" class="loader-bg">
+        <ion-spinner class="spinner" color="light"></ion-spinner>
+    </div>    
+    <ion-list no-lines>
+        <ion-item (click)="my_profile()">
+            <ion-icon class="material-icons" item-start>account_circle</ion-icon>
+            <h2>My Profile</h2>
+        </ion-item>
+        <ion-item (click)="change_pass()">
+            <ion-icon class="material-icons" item-start>vpn_key</ion-icon>
+            <h2>Change Password</h2>
+        </ion-item>
+        <ion-item (click)="about()">
+            <ion-icon class="material-icons" item-start>assignment_ind</ion-icon>
+            <h2>About Us</h2>
+        </ion-item>
+        <ion-item (click)="contact()">
+            <ion-icon class="material-icons" item-start>email</ion-icon>
+            <h2>Contact Us</h2>
+        </ion-item>
+        <ion-item (click)="openPrivacy()">
+            <ion-icon class="material-icons" item-start>lock</ion-icon>
+            <h2>Privacy Policy</h2>
+        </ion-item>
+        
+        <ion-item (click)="logout()">
+            <ion-icon class="material-icons" item-start>logout</ion-icon>
+            <h2>Logout</h2>
+        </ion-item>
+        <!-- <ion-item (click)="faq()">
+            <ion-icon class="material-icons" item-start>subject</ion-icon>
+            <h2>{{'faqs_terms' | translate}}</h2>
+        </ion-item> -->
+
+    </ion-list>
+    <!-- <p align="center" style="color: white">Powered by <a href="#" onclick="window.open('https://jacwiz.com', '_system', 'location=yes');">Jacwiz Software Solutions</a></p> -->
+</ion-content>
