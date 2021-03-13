@@ -38,7 +38,6 @@
     "@ngx-translate/core": "^9.1.1",
     "@ngx-translate/http-loader": "^2.0.1",
     "@types/googlemaps": "^3.39.9",
-    "cordova-android": "^8.1.0",
     "cordova-android-firebase-gradle-release": "^4.0.0",
     "cordova-android-play-services-gradle-release": "^4.0.0",
     "cordova-android-support-gradle-release": "^3.0.1",
@@ -64,6 +63,8 @@
   },
   "devDependencies": {
     "@ionic/app-scripts": "3.2.4",
+    "cordova-android": "^9.0.0",
+    "cordova-plugin-background-geolocation": "^1.0.6",
     "typescript": "^3.9.7"
   },
   "description": "An Ionic project",
@@ -172,17 +173,25 @@
       },
       "cordova-plugin-androidx": {},
       "cordova-plugin-androidx-adapter": {},
-      "cordova-plugin-firebasex": {},
-      "cordova-plugin-background-geolocation": {
-        "GOOGLE_PLAY_SERVICES_VERSION": "11+",
-        "ANDROID_SUPPORT_LIBRARY_VERSION": "26+",
-        "ICON": "@mipmap/icon",
-        "SMALL_ICON": "@mipmap/icon",
-        "ACCOUNT_NAME": "@string/app_name",
-        "ACCOUNT_LABEL": "@string/app_name",
-        "ACCOUNT_TYPE": "$PACKAGE_NAME.account",
-        "CONTENT_AUTHORITY": "$PACKAGE_NAME"
+      "cordova-plugin-firebasex": {
+        "FIREBASE_ANALYTICS_COLLECTION_ENABLED": "true",
+        "FIREBASE_PERFORMANCE_COLLECTION_ENABLED": "true",
+        "FIREBASE_CRASHLYTICS_COLLECTION_ENABLED": "true",
+        "ANDROID_ICON_ACCENT": "#FF00FFFF",
+        "ANDROID_PLAY_SERVICES_TAGMANAGER_VERSION": "17.0.0",
+        "ANDROID_PLAY_SERVICES_AUTH_VERSION": "18.1.0",
+        "ANDROID_FIREBASE_ANALYTICS_VERSION": "17.5.0",
+        "ANDROID_FIREBASE_MESSAGING_VERSION": "20.2.4",
+        "ANDROID_FIREBASE_CONFIG_VERSION": "19.2.0",
+        "ANDROID_FIREBASE_PERF_VERSION": "19.0.8",
+        "ANDROID_FIREBASE_AUTH_VERSION": "19.4.0",
+        "ANDROID_FIREBASE_INAPPMESSAGING_VERSION": "19.1.1",
+        "ANDROID_FIREBASE_FIRESTORE_VERSION": "21.6.0",
+        "ANDROID_FIREBASE_CRASHLYTICS_VERSION": "17.2.1",
+        "ANDROID_FIREBASE_CRASHLYTICS_NDK_VERSION": "17.2.1",
+        "ANDROID_GSON_VERSION": "2.8.6"
       },
+      "cordova-plugin-background-geolocation": {},
       "cordova.plugins.diagnostic": {
         "ANDROIDX_VERSION": "1.+"
       }
