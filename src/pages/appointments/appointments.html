@@ -25,8 +25,7 @@
 <ion-content class="bg-color">
     <div *ngIf="showLoader" class="loader-bg">
         <ion-spinner class="spinner" color="light"></ion-spinner>
-    </div>    
-
+    </div>
     <ion-refresher (ionRefresh)="doRefresh($event)">
         <ion-refresher-content
             pullingIcon="arrow-dropdown"

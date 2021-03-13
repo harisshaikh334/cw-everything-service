@@ -45,6 +45,9 @@ import { PopoverPage } from '../pages/popover/popover';
  
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { AddProductPage } from '../pages/add-product/add-product';
+import { ProductListPage } from '../pages/product-list/product-list';
+import { ProductDetailPage } from '../pages/product-detail/product-detail';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -77,6 +80,9 @@ export function createTranslateLoader(http: HttpClient) {
     LocationSelect,
     EarningsPage,
     ChangePasswordPage,
+    AddProductPage,
+    ProductListPage,
+    ProductDetailPage,
     PopoverPage
   ],
   imports: [
@@ -120,6 +126,9 @@ export function createTranslateLoader(http: HttpClient) {
     LocationSelect,
     EarningsPage,
     ChangePasswordPage,
+    AddProductPage,
+    ProductListPage,
+    ProductDetailPage,
     PopoverPage
   ],
   providers: [

@@ -10,6 +10,8 @@ import { Diagnostic } from '@ionic-native/diagnostic';
 import { Appointment_statusPage } from '../appointment_status/appointment_status';
 import {My_profilePage } from '../my_profile/my_profile';
 import { PopoverPage } from '../popover/popover';
+import { AddProductPage } from '../add-product/add-product';
+import { ProductListPage } from '../product-list/product-list';
 
 @Component({
   selector: 'page-appointments',
@@ -30,6 +32,10 @@ export class AppointmentsPage {
 
 	constructor(private locationAccuracy: LocationAccuracy, public toastController: ToastController, public diagnostic: Diagnostic, public navCtrl: NavController, public popoverController: PopoverController, public platform: Platform, private backgroundGeolocation: BackgroundGeolocation, public storage: Storage, private http: HttpClient) {
 		
+	}
+
+	goToProduct() {
+		this.navCtrl.push(ProductListPage);
 	}
 
 	onViewDidEnter(){

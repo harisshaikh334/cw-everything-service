@@ -1,0 +1,58 @@
+<!--
+  Generated template for the ProductListPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header class="bg-color">
+  <ion-navbar>
+    <ion-title>Products List</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="bg-color">
+  <div *ngIf="showLoader" class="loader-bg">
+    <ion-spinner class="spinner" color="light"></ion-spinner>
+  </div>
+  <ion-list class="ios list-ios hydrated card-bg" inset>
+    <ion-item
+      *ngFor="let product of product_list; let i = index;"
+      (click)="goToDetail(product)"
+    >
+      <div class="card-box">
+        <div class="card-image">
+          <ion-thumbnail class="product-image" slot="start">
+            <img src="./../../assets/imgs/avatar.png" />
+          </ion-thumbnail>
+        </div>
+        <div class="card-detail">
+          <h2>{{ product.product_name }}</h2>
+          <p>Price: {{ product.sale_price }}</p>
+          <!-- <div class="stock-box"> -->
+            <p>MRP: {{ product.mrp }}</p>
+            <p class="stock-label" >{{product.stock == 1?'In Stock' : 'Out of stock'}}</p>
+          <!-- </div> -->
+          
+        </div>
+        
+        <div class="btn-box">
+          <!-- <button (click)="editProduct(product, i)" class="icon-sm edit-icon">
+            <ion-icon name="create"></ion-icon>
+          </button>
+          <button (click)="askDeleteCOnfirmation(product ,i)" class="icon-sm delete-icon">
+            <ion-icon name="trash"></ion-icon>
+          </button> -->
+        </div>
+      </div>
+
+    </ion-item>
+  </ion-list>
+  <div class="no-result" *ngIf="product_list.length ==0" style="color: white;">
+    No product found.
+  </div>
+  <ion-fab right bottom>
+    <button (click)="goToAddProductPage()" ion-fab>
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-fab>
+</ion-content>

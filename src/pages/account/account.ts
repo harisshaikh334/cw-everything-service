@@ -12,6 +12,7 @@ import {AboutPage } from '../about/about';
 import {FaqPage } from '../faq/faq';
 import { ChangePasswordPage } from '../change-password/change-password';
 import {SigninPage} from '../signin/signin';
+import { ProductListPage } from '../product-list/product-list';
 
 @Component({
   selector: 'page-account',
@@ -122,6 +123,10 @@ export class AccountPage {
 
   change_pass(){
     this.navCtrl.push(ChangePasswordPage);
+  }
+
+  my_product() {
+    this.navCtrl.push(ProductListPage);
   }
 
   my_profile(){
