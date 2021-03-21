@@ -1,0 +1,57 @@
+<!--
+  Generated template for the OrderDetailsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header class="bg-color">
+  <ion-navbar>
+    <ion-title>Order Details</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content class="bg-color">
+  <div *ngIf="showLoader" class="loader-bg">
+    <ion-spinner class="spinner" color="light"></ion-spinner>
+  </div>
+  <div class="total-price">
+    <h1>Total Price: &#8377; {{order_details?.sub_total}} </h1>
+    <p>Status : {{orderStatus}}</p>
+    <p>{{order_details?.subcategory?.name}}</p>
+    <p>Customer : {{order_details?.customer?.name}}</p>
+    <p>Address {{order_details.service_address}}</p>
+    <!-- <p>Address {{order.service_address}}</p> -->
+  </div>
+  <ion-list no-lines>
+    <ion-item *ngFor="let data of order_details?.product">
+      <div class="img_box center_img" item-start>
+        <img src="{{'assets/imgs/avatar.png'}}" width="100px" height="100px">
+    </div>
+    <h2 class="d-flex"><span>{{data.product_name }}</span>
+    </h2>
+    <!-- <h3>Plumber</h3> -->
+    <h3 class="d-flex">Sale Price {{data.sale_price}}</h3>
+    <h3 class="d-flex">MRP Price {{data.mrp}}</h3>
+    <h3 class="d-flex">Qty {{data.qty}}</h3>
+    <!-- <button ion-button (click)="openDesc(data)" class="d-flex">Show Description</button> -->
+    </ion-item>
+  </ion-list>
+</ion-content>
+<ion-footer no-border>
+  <button [hidden]="orderStatus == 'Complete' || orderStatus == 'Cancelled'" ion-button block (click)="handleAlert()" class="btn"> {{updateName | translate}}</button>
+</ion-footer>
+<div *ngIf="showDesc" class="modal-pop">
+  <div class="modal-inner">
+      <div class="modal-header">
+          <!-- <h2>{{popHeading}}</h2> -->
+          <button class="close-btn" (click)="closeDesc()"> &#10006;</button>
+      </div>
+      <div class="modal-body">
+          <p [innerHTML]="description">
+          </p>
+          <!-- <img [src]="popup_image" [title]="popHeading" [alt]="popHeading" /> -->
+      </div>
+  </div>
+</div>

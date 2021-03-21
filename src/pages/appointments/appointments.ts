@@ -10,8 +10,8 @@ import { Diagnostic } from '@ionic-native/diagnostic';
 import { Appointment_statusPage } from '../appointment_status/appointment_status';
 import {My_profilePage } from '../my_profile/my_profile';
 import { PopoverPage } from '../popover/popover';
-import { AddProductPage } from '../add-product/add-product';
 import { ProductListPage } from '../product-list/product-list';
+import { OrderDetailsPage } from '../order-details/order-details';
 
 @Component({
   selector: 'page-appointments',
@@ -27,7 +27,7 @@ export class AppointmentsPage {
 	user : any = {};
 	showfee: boolean = false;
 	filterVal: string = 'All';
-
+	order_list = [];
 	firebasePlugin;
 
 	constructor(private locationAccuracy: LocationAccuracy, public toastController: ToastController, public diagnostic: Diagnostic, public navCtrl: NavController, public popoverController: PopoverController, public platform: Platform, private backgroundGeolocation: BackgroundGeolocation, public storage: Storage, private http: HttpClient) {
@@ -129,6 +129,7 @@ export class AppointmentsPage {
 
         	//check this approval status in order api, no need to separately hit this.
         	this.loadAppointments();
+			this.loadOrders();
 
 			//getting unpaid services
 			this.http.get<any>(APIURL+'service-providers/unpaid-services?access-token='+this.user.token)
@@ -150,7 +151,7 @@ export class AppointmentsPage {
 
 	loadAppointments(){
 		this.showLoader = true;
-		this.http.get<any>(APIURL+'orders?access-token='+this.user.token+'&where[sp_id]='+this.user.id)
+		this.http.get<any>(APIURL+'orders?access-token='+this.user.token+'&where[sp_id]='+this.user.id+"&where[is_product]=0")
 		.subscribe({
 			next: data => {
 				this.showLoader = false;
@@ -169,8 +170,28 @@ export class AppointmentsPage {
 		});
 	}
 
+	loadOrders() {
+		this.showLoader = true;
+		this.http.get<any>(APIURL+'orders?access-token='+this.user.token+'&where[sp_id]='+this.user.id+"&where[is_product]=1")
+			// this.http.get<any>(APIURL+'orders?access-token='+this.user.token+'&where[customer_id]='+this.user.id+"&where[is_product]=1")
+			.subscribe({
+				next: data => {
+					this.showLoader = false;
+					console.log('data is ', data);
+					this.order_list = data.orders;
+				},
+				error: err => {
+					this.showLoader = false;
+				}
+			});	
+	  }
+	  order_details(item) {
+		this.navCtrl.push(OrderDetailsPage, {order: item})
+	  }
+
 	doRefresh(refresher) {
 	    this.loadAppointments();
+		this.loadOrders();
 
 	    let interval = setInterval(() => {
 	      if(this.showLoader == false){

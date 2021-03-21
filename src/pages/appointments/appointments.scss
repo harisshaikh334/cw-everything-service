@@ -1,4 +1,17 @@
 page-appointments {
+
+    .order-list {
+        background: linear-gradient(135deg, #575768 0%, #3e3e48 100%);
+        ion-item.item.item-block.item-md {
+            left: 15px;
+        }
+        h2,h3,p {
+            color: $white;
+        }
+        .order-container.list.item::before {
+            background: red !important;
+        }
+    }
     .header {
         .segment {
             border: none !important;
@@ -120,7 +133,9 @@ page-appointments {
                     margin: 0;
                     position: relative;
                     z-index: 99;
-
+                    h3 {
+                        color: $white;
+                    }
                     h2 {
                         color: $white;
                         font-size: 1.4rem;

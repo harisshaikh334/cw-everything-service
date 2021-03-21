@@ -58,10 +58,10 @@ export class SignupPage {
 				Validators.required,
 				Validators.minLength(8)
 			])],
-			otp: ['', Validators.compose([
-				Validators.required,
-				Validators.minLength(6)
-			])]
+			// otp: ['', Validators.compose([
+			// 	// Validators.required,
+			// 	// Validators.minLength(6)
+			// ])]
 		});
 	}
 
@@ -123,10 +123,10 @@ export class SignupPage {
 
 		this.submitAttempt = true;
 
-		if(this.signupForm.get('otp').value != this.otp){
-			this.signupForm.get('otp').markAsDirty();
-			return false;
-		}
+		// if(this.signupForm.get('otp').value != this.otp){
+		// 	this.signupForm.get('otp').markAsDirty();
+		// 	return false;
+		// }
 		
 		if(this.signupForm.valid){
 			this.showLoader = true;

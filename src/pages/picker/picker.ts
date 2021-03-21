@@ -3,7 +3,6 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { HttpClient } from '@angular/common/http';
 import { APIURL } from '../../app/apiconfig';
 
-@IonicPage()
 @Component({
   selector: 'page-picker',
   templateUrl: 'picker.html',

@@ -11,7 +11,6 @@ import { APIURL } from '../../app/apiconfig';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
 @Component({
   selector: 'page-earnings',
   templateUrl: 'earnings.html',

@@ -13,6 +13,7 @@ import {FaqPage } from '../faq/faq';
 import { ChangePasswordPage } from '../change-password/change-password';
 import {SigninPage} from '../signin/signin';
 import { ProductListPage } from '../product-list/product-list';
+import { OrderHostoryPage } from '../order-hostory/order-hostory';
 
 @Component({
   selector: 'page-account',
@@ -47,6 +48,10 @@ export class AccountPage {
         }
       });
     });
+  }
+
+  my_order_history() {
+    this.navCtrl.push(OrderHostoryPage)
   }
 
   //starting watch while user goes online

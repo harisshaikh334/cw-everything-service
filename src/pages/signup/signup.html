@@ -28,10 +28,10 @@
                 <ion-item [class.invalid]="!signupForm.controls.contact.valid && (signupForm.controls.contact.dirty || submitAttempt)">
                     <ion-icon class="material-icons" item-start>phone_android</ion-icon>
                     <ion-label floating>{{'mobile_number' | translate}}</ion-label>
-                    <ion-input autocomplete="off" (ionBlur)="sendOTP()" formControlName="contact" maxlength="10" type="tel"></ion-input>
+                    <ion-input autocomplete="off" formControlName="contact" maxlength="10" type="tel"></ion-input>
                 </ion-item>
                 <p class='error' *ngIf="!signupForm.controls.contact.valid && (signupForm.controls.contact.dirty || submitAttempt)">Please enter your mobile number.</p>
-                <p text-right *ngIf="signupForm.controls.contact.valid"><a href="#" (click)="resend()">Resend OTP?</a></p>
+                <!-- <p text-right *ngIf="signupForm.controls.contact.valid"><a href="#" (click)="resend()">Resend OTP?</a></p> -->
 
                  <ion-item [class.invalid]="!signupForm.controls.password.valid && (signupForm.controls.password.dirty || submitAttempt)">
                     <ion-icon class="material-icons" item-start>lock</ion-icon>
@@ -51,12 +51,12 @@
                 </ion-item>
                 <p class='error' *ngIf="!signupForm.controls.skills.valid  && (signupForm.controls.skills.dirty || submitAttempt)">Please enter skills you want to work for.</p>
 
-                <ion-item class="verification_code">
+                <!-- <ion-item class="verification_code">
                     <ion-icon class="material-icons" item-start>mobile_friendly</ion-icon>
                     <ion-label floating>{{'enter_verification_code' | translate}}</ion-label>
                     <ion-input autocomplete="off" type="number" formControlName="otp"></ion-input>
                 </ion-item>
-                <p class='error' *ngIf="!signupForm.controls.otp.valid && (signupForm.controls.otp.dirty || submitAttempt)">Please enter valid OTP.</p>
+                <p class='error' *ngIf="!signupForm.controls.otp.valid && (signupForm.controls.otp.dirty || submitAttempt)">Please enter valid OTP.</p> -->
 
                 <ion-item>
                     <ion-label class="clickEnableCls">I agree to all the <a (click)="openTerms()" class="text-md-secondary">Terms &amp; Conditions</a> of Everything Services Pvt. Ltd.</ion-label>

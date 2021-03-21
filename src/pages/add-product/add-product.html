@@ -54,24 +54,25 @@
         <p class='error' *ngIf="productForm && !productForm?.controls.discount_price.valid  && (productForm.controls.discount_price.dirty || submitAttempt)">Please write valid discounted price.</p>
       
         <ion-item>
-          <ion-label class="clickEnableCls">In Stock</ion-label>
-          <ion-checkbox formControlName="in_stock"></ion-checkbox>
-      </ion-item>
+          <ion-label floating>{{'In Stock' | translate}}</ion-label>
+          <ion-input autocomplete="off" formControlName="in_stock" type="tel"></ion-input>
+        </ion-item>
+      <p class='error' *ngIf="productForm && !productForm?.controls.in_stock.valid  && (productForm.controls.in_stock.dirty || submitAttempt)">Please write valid stock.</p>
       <ion-item>
         <ion-label floating>Description</ion-label>
         <ion-textarea formControlName="description" rows="2"></ion-textarea>
       </ion-item>
       <p class='error' *ngIf="productForm && !productForm?.controls.description.valid  && (productForm.controls.description.dirty || submitAttempt)">Please write valid description.</p>
       <ion-item>
-        <div class="profile" (click)="file.click()" >
+        <div class="profile" (click)="actionSheetFile()" >
           <p *ngIf="!product_image">Select Image</p>
-          <input hidden type="file" (change)="onSelImage($event.target.files)" #file placeholder="Profile Image" autocomplete="off">
+          <input hidden type="file" (change)="onSelImage($event.target.files)" #file placeholder="Profile Image" accept="image/*" autocomplete="off">
           <img *ngIf="product_image" [src]="product_image" /> 
           <!-- <div (click)="actionSheetFile()" class="profile_img center_img">
               <img [src]="product_image || './../../assets/imgs/avatar.png'" class="crop_img loading" onerror="this.onerror=null;this.src='assets/imgs/avatar.png';" /> 
           </div>
           <ion-icon (click)="actionSheetFile()" class="material-icons">camera_alt</ion-icon> -->
-      </div>
+        </div>
       </ion-item>  
     </ion-list>
       <button ion-button block class="btn" (click)="addProduct()"> {{btnHeading | translate}}</button>

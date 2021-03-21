@@ -26901,6 +26901,22 @@ page-appointment_status .appointment_details .list .item .item-inner .label .tex
   font-weight: 400;
 }
 
+page-appointments .order-list {
+  background: linear-gradient(135deg, #575768 0%, #3e3e48 100%);
+}
+
+page-appointments .order-list ion-item.item.item-block.item-md {
+  left: 15px;
+}
+
+page-appointments .order-list h2, page-appointments .order-list h3, page-appointments .order-list p {
+  color: #fff;
+}
+
+page-appointments .order-list .order-container.list.item::before {
+  background: red !important;
+}
+
 page-appointments .header .segment {
   border: none !important;
   background: none !important;
@@ -27031,6 +27047,10 @@ page-appointments .list .item .item-inner .label {
   margin: 0;
   position: relative;
   z-index: 99;
+}
+
+page-appointments .list .item .item-inner .label h3 {
+  color: #fff;
 }
 
 page-appointments .list .item .item-inner .label h2 {
@@ -28162,6 +28182,175 @@ page-notification .list .item .item-inner .label h3 {
   margin: 0;
   color: #a8a8b5;
   font-size: 1.2rem;
+}
+
+page-order-details .header .text_box {
+  position: relative;
+  overflow: hidden;
+  height: 150px;
+}
+
+page-order-details .header .text_box h1 {
+  width: 100%;
+  color: #fff;
+  margin: 0;
+  font-size: 2.8rem;
+  margin-top: 30px;
+}
+
+page-order-details .header .text_box::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 50px;
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0)), to(rgba(33, 33, 41, 0.88)));
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(33, 33, 41, 0.88) 100%);
+}
+
+page-order-details h2, page-order-details h3 {
+  color: #fff;
+}
+
+page-order-details .total-price {
+  color: white;
+  padding: 0 15px;
+}
+
+page-order-details .total-price p {
+  font-size: 16px;
+}
+
+page-order-details .list {
+  margin: 0;
+}
+
+page-order-details .list .item {
+  padding: 8px 14px 8px 14px;
+  background: linear-gradient(135deg, #575768 0%, #3e3e48 100%);
+  border-radius: 5px;
+  width: calc(100% - 20px);
+  margin: 0 auto;
+  margin-bottom: 10px;
+}
+
+page-order-details .list .item .item-inner {
+  padding: 0;
+}
+
+page-order-details .list .item .item-inner .label {
+  margin: 0;
+}
+
+page-order-details .list .item .item-inner .label h2 {
+  color: #fff;
+  font-size: 1.35rem;
+  font-weight: 500;
+  margin: 0;
+}
+
+page-order-details .list .item .item-inner .label h2 span {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+page-order-details .list .item .item-inner .label h2 ion-icon {
+  color: #13de81;
+  min-width: 24px;
+}
+
+page-order-details .list .item .item-inner .label p {
+  margin: 0;
+  color: #13de81;
+  font-size: 1.1rem;
+}
+
+page-order-hostory .header .text_box {
+  position: relative;
+  overflow: hidden;
+  height: 150px;
+}
+
+page-order-hostory .header .text_box h1 {
+  width: 100%;
+  color: #fff;
+  margin: 0;
+  font-size: 2.8rem;
+  margin-top: 30px;
+}
+
+page-order-hostory .header .text_box::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 50px;
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0)), to(rgba(33, 33, 41, 0.88)));
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(33, 33, 41, 0.88) 100%);
+}
+
+page-order-hostory h2, page-order-hostory h3 {
+  color: #fff;
+}
+
+page-order-hostory .total-price {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  color: white;
+}
+
+page-order-hostory .list {
+  margin: 0;
+}
+
+page-order-hostory .list .item {
+  padding: 8px 14px 8px 14px;
+  background: linear-gradient(135deg, #575768 0%, #3e3e48 100%);
+  border-radius: 5px;
+  width: calc(100% - 20px);
+  margin: 0 auto;
+  margin-bottom: 10px;
+}
+
+page-order-hostory .list .item .item-inner {
+  padding: 0;
+}
+
+page-order-hostory .list .item .item-inner .label {
+  margin: 0;
+}
+
+page-order-hostory .list .item .item-inner .label h2 {
+  color: #fff;
+  font-size: 1.35rem;
+  font-weight: 500;
+  margin: 0;
+}
+
+page-order-hostory .list .item .item-inner .label h2 span {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+page-order-hostory .list .item .item-inner .label h2 ion-icon {
+  color: #13de81;
+  min-width: 24px;
+}
+
+page-order-hostory .list .item .item-inner .label p {
+  margin: 0;
+  color: #13de81;
+  font-size: 1.1rem;
 }
 
 page-picker .header .toolbar .title .toolbar-title {

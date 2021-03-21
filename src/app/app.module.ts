@@ -48,6 +48,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { AddProductPage } from '../pages/add-product/add-product';
 import { ProductListPage } from '../pages/product-list/product-list';
 import { ProductDetailPage } from '../pages/product-detail/product-detail';
+import { OrderHostoryPage } from '../pages/order-hostory/order-hostory';
+import { OrderDetailsPage } from '../pages/order-details/order-details';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -83,6 +85,8 @@ export function createTranslateLoader(http: HttpClient) {
     AddProductPage,
     ProductListPage,
     ProductDetailPage,
+    OrderHostoryPage,
+    OrderDetailsPage,
     PopoverPage
   ],
   imports: [
@@ -129,6 +133,8 @@ export function createTranslateLoader(http: HttpClient) {
     AddProductPage,
     ProductListPage,
     ProductDetailPage,
+    OrderHostoryPage,
+    OrderDetailsPage,
     PopoverPage
   ],
   providers: [

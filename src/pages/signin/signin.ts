@@ -72,11 +72,11 @@ export class SigninPage {
 				    badge: true,
 				    visibility: 1
 				};
-				this.firebasePlugin.createChannel(channel);
+				// this.firebasePlugin.createChannel(channel);
 				//this.firebasePlugin.onMessageReceived(this.onMessageReceived.bind(this));
-				this.firebasePlugin.getToken(token => {
-					this.push_token = token;
-				});
+				// this.firebasePlugin.getToken(token => {
+				// 	this.push_token = token;
+				// });
 			}
 	    });
     }

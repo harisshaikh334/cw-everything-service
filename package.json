@@ -41,6 +41,7 @@
     "cordova-android-firebase-gradle-release": "^4.0.0",
     "cordova-android-play-services-gradle-release": "^4.0.0",
     "cordova-android-support-gradle-release": "^3.0.1",
+    "cordova-browser": "6.0.0",
     "cordova-plugin-androidx": "^3.0.0",
     "cordova-plugin-androidx-adapter": "^1.1.1",
     "cordova-plugin-camera": "^4.1.0",
@@ -63,9 +64,8 @@
   },
   "devDependencies": {
     "@ionic/app-scripts": "3.2.4",
-    "cordova-android": "^9.0.0",
-    "cordova-plugin-background-geolocation": "^1.0.6",
-    "typescript": "^3.9.7"
+    "cordova-android": "^8.1.0",
+    "typescript": "~2.6.2"
   },
   "description": "An Ionic project",
   "cordova": {
@@ -191,12 +191,12 @@
         "ANDROID_FIREBASE_CRASHLYTICS_NDK_VERSION": "17.2.1",
         "ANDROID_GSON_VERSION": "2.8.6"
       },
-      "cordova-plugin-background-geolocation": {},
       "cordova.plugins.diagnostic": {
         "ANDROIDX_VERSION": "1.+"
       }
     },
     "platforms": [
+      "browser",
       "android"
     ]
   }

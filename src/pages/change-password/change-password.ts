@@ -4,7 +4,6 @@ import { HttpClient } from '@angular/common/http';
 import { APIURL } from '../../app/apiconfig';
 import { Storage } from '@ionic/storage';
 
-@IonicPage()
 @Component({
   selector: 'page-change-password',
   templateUrl: 'change-password.html',

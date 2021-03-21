@@ -29,7 +29,8 @@
           <h2>{{ product.product_name }}</h2>
           <p>Price: {{ product.sale_price }}</p>
           <!-- <div class="stock-box"> -->
-            <p>MRP: {{ product.mrp }}</p>
+            <p *ngIf="product.mrp > product.sale_price">MRP: <s style="color: #000;">{{ product.mrp }}</s></p>
+            <p *ngIf="!(product.mrp > product.sale_price)">MRP: {{ product.mrp }}</p>
             <p class="stock-label" >{{product.stock == 1?'In Stock' : 'Out of stock'}}</p>
           <!-- </div> -->
           

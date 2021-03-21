@@ -13,7 +13,6 @@ import { ProductDetailPage } from '../product-detail/product-detail';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
 @Component({
   selector: 'page-product-list',
   templateUrl: 'product-list.html',
@@ -37,8 +36,9 @@ export class ProductListPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ProductListPage');
-    this.storage.get('cuserinfo').then(result => {
+    this.storage.get('userinfo').then(result => {
 		  this.user = JSON.parse(result);
+      console.log('user is ', this.user);
       this.getProductList();
     });
     

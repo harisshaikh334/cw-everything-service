@@ -3,5 +3,12 @@
   "integrations": {
     "cordova": {}
   },
-  "type": "ionic-angular"
+  "type": "ionic-angular",
+  "proxies": [
+    {
+      "path": "/sapi",
+      "proxyUrl": "https://everythingservices.in/admin14/sapi"
+    }
+  ]
+
 }

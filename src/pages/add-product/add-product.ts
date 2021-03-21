@@ -14,7 +14,6 @@ import { TabsPage } from '../tabs/tabs';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
 @Component({
   selector: 'page-add-product',
   templateUrl: 'add-product.html',
@@ -36,7 +35,7 @@ export class AddProductPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AddProductPage');
-    this.storage.get('cuserinfo').then(result => {
+    this.storage.get('userinfo').then(result => {
 		  this.user = JSON.parse(result);
     });
     this.product_detail = this.navParams.get('product');
@@ -67,7 +66,7 @@ export class AddProductPage {
 			sale_price: ['', Validators.compose([ Validators.required, Validators.maxLength(10), Validators.pattern('^[0-9{10}]+$')])],
 			product_mrp: ['', Validators.compose([ Validators.required, Validators.maxLength(10), Validators.pattern('^[0-9{10}]+$')])],
 			discount_price: ['', Validators.compose([ Validators.required, Validators.maxLength(10), Validators.pattern('^[0-9{10}]+$')])],
-			in_stock: [false],
+			in_stock: ['', Validators.compose([ Validators.required, Validators.pattern('^[0-9]*\.?[0-9]*$')])],
 			description: ['', Validators.compose([ Validators.required])]
 		});
     if (this.edit_form) {
@@ -79,7 +78,7 @@ export class AddProductPage {
         sale_price: this.product_detail['sale_price'], 
         product_mrp: this.product_detail['mrp'], 
         discount_price: this.product_detail['discount'], 
-        in_stock:this.product_detail['stock'] == 1? true: false , 
+        in_stock:this.product_detail['stock'] , 
         description: this.product_detail['description'], 
       });
       this.product_image = this.product_detail['image'];
@@ -148,7 +147,7 @@ export class AddProductPage {
       return false;
     }
     let values = this.productForm.value;
-    if (values.sale_price > values.product_mrp) {
+    if (Number(values.sale_price) > Number(values.product_mrp)) {
       const toast = this.toastController.create({
         message: "Sale price cannot be grater than mrp price.",
         duration: 4000,
@@ -172,7 +171,7 @@ export class AddProductPage {
     formdata.append('discount', this.productForm.get('discount_price').value);
     formdata.append('unit', this.productForm.get('product_unit').value);
     formdata.append('unit_value', this.productForm.get('unit_value').value);
-    formdata.append('stock', this.productForm.get('in_stock').value ? 1: 0);
+    formdata.append('stock', this.productForm.get('in_stock').value);
     if (this.image_update) {
       formdata.append('file', this.product_image);
     }
