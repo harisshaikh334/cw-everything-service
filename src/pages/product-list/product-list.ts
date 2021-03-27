@@ -21,6 +21,7 @@ export class ProductListPage {
   product_list = [
     
   ];
+  public baseurl: string = APIURL;
   showLoader: boolean = false;
   user:any = {};
   constructor(public navCtrl: NavController,

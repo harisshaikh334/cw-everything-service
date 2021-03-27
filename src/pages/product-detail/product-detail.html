@@ -26,8 +26,8 @@
     <ion-spinner class="spinner" color="light"></ion-spinner>
 </div>
 <ion-row>
-  <div class="prod-det-img">
-    <img src="./../../assets/imgs/avatar.png" />
+  <div class="prod-det-img" *ngIf="product_detail">
+    <img onload="this.classList.remove('loading')" onerror="this.onerror=null;this.src='assets/imgs/avatar.png';" [src]="product_detail.image != '' ? baseurl+'../../'+product_detail.image : 'assets/imgs/avatar.png'" />
   </div>
   
 </ion-row>
