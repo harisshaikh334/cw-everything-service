@@ -173,7 +173,7 @@ export class AddProductPage {
     formdata.append('unit_value', this.productForm.get('unit_value').value);
     formdata.append('stock', this.productForm.get('in_stock').value);
     if (this.image_update) {
-      formdata.append('file', this.product_image);
+      formdata.append('image_data', this.product_image);
     }
     let url = APIURL+"products/product-create?token="+this.user.token;
     if (this.edit_form) {

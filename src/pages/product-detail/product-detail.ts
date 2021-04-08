@@ -18,6 +18,7 @@ import { AddProductPage } from '../add-product/add-product';
   templateUrl: 'product-detail.html',
 })
 export class ProductDetailPage {
+  public baseurl: string = APIURL;
   product_detail:any ;
   showLoader: boolean = false;
   user: any = {};
